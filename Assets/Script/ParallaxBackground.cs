@@ -16,7 +16,7 @@ public class ParallaxBackground : MonoBehaviour
     {
         float moveX = moveSpeed * Time.deltaTime;
         transform.position += new Vector3(moveX, 0);
-        if (Mathf.Abs(transform.position.x) > 5)
+        if (Mathf.Abs(transform.position.x) > 20)
         {
             transform.position = new Vector3(0f, transform.position.y);
         }

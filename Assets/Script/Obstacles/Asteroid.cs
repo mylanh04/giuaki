@@ -71,8 +71,15 @@ public class Asteroid : MonoBehaviour
             lives--;
             if (lives <= 0)
             {
+                // Phát âm thanh nổ khi bị phá hủy
+                AudioManager.Instance.PlaySoundOneShot(AudioManager.Instance.explodeSource);
                 Instantiate(destroyEffect, transform.position, transform.rotation);
-                Destroy(gameObject);    
+                Destroy(gameObject);
+            }
+            else
+            {
+                // Phát âm thanh trúng đạn nhưng chưa hỏng
+                AudioManager.Instance.PlaySoundOneShot(AudioManager.Instance.hitSource);
             }
         }
 

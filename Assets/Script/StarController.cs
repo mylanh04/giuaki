@@ -1,10 +1,18 @@
 using UnityEngine;
 
+[System.Serializable]
+public class StarType
+{
+    public Sprite sprite;
+    public int points;
+}
+
 public class StarController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private int experienceToGive = 1;
-    [SerializeField] private Sprite[] starSprites;
+    [SerializeField] private StarType[] starTypes; // Mảng các loại sao với sprite và điểm
+    public int pointValue; // Giá trị điểm của ngôi sao hiện tại
 
     private Vector3 targetPosition;
     private float moveSpeed;
@@ -12,7 +20,30 @@ public class StarController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = starSprites[Random.Range(0, starSprites.Length)];
+
+        // Fix: ensure the sprite isn't visually flipped by a negative scale in the prefab
+        Vector3 s = transform.localScale;
+        s.x = Mathf.Abs(s.x);
+        s.y = Mathf.Abs(s.y);
+        transform.localScale = s;
+        // Also reset SpriteRenderer flip flags to be safe
+        spriteRenderer.flipX = false;
+        spriteRenderer.flipY = false;
+
+        if (starTypes.Length == 0)
+        {
+            Debug.LogError("Chưa cấu hình các loại sao!");
+            return;
+        }
+
+        // Chọn ngẫu nhiên một loại sao
+        int randomIndex = Random.Range(0, starTypes.Length);
+        StarType selectedStar = starTypes[randomIndex];
+        
+        // Áp dụng sprite và điểm tương ứng
+        spriteRenderer.sprite = selectedStar.sprite;
+        pointValue = selectedStar.points;
+        
         moveSpeed = Random.Range(0.5f, 3f);
         generateRandomPosition();
     }
@@ -40,9 +71,13 @@ public class StarController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            PlayerController.Instance.GetExperience(experienceToGive);
-            // also add score toward win condition
-            GameManager.Instance.AddScore(1);
+            PlayerController.Instance.GetExperience(pointValue);
+            // Cộng điểm theo giá trị của ngôi sao
+            GameManager.Instance.AddScore(pointValue);
+            if (AudioManager.Instance != null && AudioManager.Instance.collectStarSource != null)
+            {
+                AudioManager.Instance.PlaySoundOneShot(AudioManager.Instance.collectStarSource);
+            }
             Destroy(gameObject);
         }
     }

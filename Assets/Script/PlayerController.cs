@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //va cham tieu hanh tinh
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             TakeDamage(1);

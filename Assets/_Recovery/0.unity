@@ -1934,7 +1934,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f453b7b2103d7d5418a40136909f0e45, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2875,7 +2875,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 8585379745150473258, guid: f0b2b48a9ea02e84fa5d2bb1c2063ce4, type: 3}
   experiencePoints: 0
   currentLevel: 0
-  maxLevel: 2
+  maxLevel: 10
   playerLevelUps: 050000000a0000000f000000
   whiteMaterial: {fileID: 2100000, guid: 88d13a5d1ab9ea44db63d7250ce20e24, type: 2}
 --- !u!58 &1432507839
@@ -3229,7 +3229,7 @@ GameObject:
   - component: {fileID: 1603921575}
   - component: {fileID: 1603921576}
   m_Layer: 8
-  m_Name: AsteroidSpawner
+  m_Name: ObjectSpawner
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3312,15 +3312,15 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7730933120790654504, guid: 232129d19ed3a7640b45fdceb93e2ba2, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0bd6f66dabf376a4eb1ba04d3c87468d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4aa57fb8017e86d40a89676a7e00349a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 125
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

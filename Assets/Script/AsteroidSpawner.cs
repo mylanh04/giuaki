@@ -5,7 +5,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private Transform minPos;
     [SerializeField] private Transform maxPos;
 
-    public GameObject prefab;
+    public GameObject prefab; // Prefab của ngôi sao
     public float spawnTimer;
     public float spawnInterval;
     // Update is called once per frame
